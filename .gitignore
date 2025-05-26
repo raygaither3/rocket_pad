@@ -1,0 +1,21 @@
+### ✅ `.gitignore`
+
+```gitignore
+# Python cache
+__pycache__/
+*.pyc
+
+# Flask debug files
+*.log
+
+# Launch logs and runtime files
+launch_log.csv
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db

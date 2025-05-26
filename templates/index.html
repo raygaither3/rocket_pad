@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rocket Launch Pad</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: #111; color: #fff; }
+    button { padding: 10px 20px; margin: 10px; font-size: 1.2em; }
+    .armed { color: lime; }
+    .disarmed { color: red; }
+    .countdown { font-size: 3em; margin-top: 20px; }
+    .video { margin-top: 20px; border: 2px solid #fff; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Rocket Launch Controller</h1>
+
+  <h2>Status:
+    {% if status.armed %}
+      <span class="armed">ARMED</span>
+    {% else %}
+      <span class="disarmed">DISARMED</span>
+    {% endif %}
+  </h2>
+
+  {% if status.countdown %}
+    <div class="countdown">T-minus {{ status.countdown }}</div>
+  {% elif status.launched %}
+    <div class="countdown">🚀 LAUNCHED!</div>
+  {% elif status.aborted %}
+    <div class="countdown">❌ ABORTED</div>
+  {% endif %}
+
+  <div>
+    <form action="/toggle_safety"><button>Toggle Safety</button></form>
+    <form action="/launch"><button {% if not status.armed %}disabled{% endif %}>Launch</button></form>
+    <form action="/abort"><button>Abort</button></form>
+  </div>
+
+  <div class="video">
+    <h3>📷 Live Feed</h3>
+    <img src="/video_feed" width="480">
+  </div>
+</body>
+</html>
