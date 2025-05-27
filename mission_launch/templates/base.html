@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Ray’s Space Station{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  <!-- 🌌 Shared Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="/" class="nav-logo">Ray’s Space Station</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Mission Control</a>
+        <a href="#">Gallery</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-container">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

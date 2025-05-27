@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Ray’s Space Station{% endblock %}
+{% block body_class %}landing{% endblock %}
+
+{% block content %}
+  <div class="landing-container">
+    <img src="{{ url_for('static', filename='images/rss_logo.png') }}" alt="Ray’s Space Station Logo" class="landing-logo">
+    <h1>Ray’s Space Station</h1>
+    <p class="tagline">Launch dreams. Log missions. Learn together.</p>
+    <a href="/dashboard" class="enter-button">Enter Mission Control</a>
+  </div>
+{% endblock %}

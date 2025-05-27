@@ -19,3 +19,12 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Flight data logs
+flight_data.csv
+
+# VS Code settings (if using VS Code)
+.vscode/
+
+# Compiled models
+*.keras
