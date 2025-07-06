@@ -3,47 +3,80 @@
 {% block body_class %}dashboard{% endblock %}
 
 {% block content %}
-  <div class="wrapper">
-    <div class="sidebar">
-      <div class="status-item"><strong>Status</strong><br>{% if status.armed %}<span style="color:lime">ARMED</span>{% else %}<span style="color:red">DISARMED</span>{% endif %}</div>
-      <div class="status-item"><strong>Altitude</strong><br>{{ status.altitude }} m</div>
-      <div class="status-item"><strong>Speed</strong><br>{{ status.speed }} m/s</div>
-      <div class="status-item"><strong>Camera</strong><br>{% if status.camera_on %}ON{% else %}OFF{% endif %}</div>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="status-item"><strong>Status</strong><br>
+      {% if status.armed %}<span style="color:lime">ARMED</span>
+      {% else %}<span style="color:red">DISARMED</span>{% endif %}
     </div>
-
-    <div class="content">
-      <div class="video">
-      {% if status.camera_on %}
-        <img src="/video_feed" width="640" height="480">
-      {% else %}
-        <div class="video-placeholder">
-          <p>[ VIDEO FEED OFF ]</p>
-        </div>
-      {% endif %}
-    </div>
-
-      {% if status.countdown %}
-        <div class="countdown">T-minus {{ status.countdown }}</div>
-      {% elif status.launched %}
-        <div class="countdown">🚀 LAUNCHED!</div>
-      {% elif status.aborted %}
-        <div class="countdown">❌ ABORTED</div>
-      {% endif %}
-
-      <div class="controls">
-        <form action="/start_recorder"><button class="nasa-button" {% if status.recording %}disabled{% endif %}>Start Recorder</button></form>
-        <form action="/stop_recorder"><button class="nasa-button" {% if not status.recording %}disabled{% endif %}>Stop Recorder</button></form>
-        <form action="/toggle_safety"><button class="nasa-button">Toggle Safety</button></form>
-        <form action="/launch"><button class="nasa-button" {% if not status.armed %}disabled{% endif %}>Launch</button></form>
-        <form action="/abort"><button class="nasa-button">Abort</button></form>
-        <form action="/start_camera"><button class="nasa-button">Start Camera</button></form>
-        <form action="/stop_camera"><button class="nasa-button">Stop Camera</button></form>
-      </div>
-    </div>
+    <div class="status-item"><strong>Temperature</strong><br>{{ temp_f }} °F ({{ temp_c }} °C)</div>
+    <div class="status-item"><strong>Altitude</strong><br>{{ status.altitude }} m</div>
+    <div class="status-item"><strong>Speed</strong><br>{{ status.speed }} m/s</div>
+    <div class="status-item"><strong>Camera</strong><br>{% if status.camera_on %}ON{% else %}OFF{% endif %}</div>
   </div>
 
-  <footer class="footer">
-    <p>Rocket Control Dashboard</p>
-    <p>© 2025 Ray's Rocket Team</p>
-  </footer>
+  <div class="content">
+    <div class="video">
+      {% if status.camera_on %}
+        <h3>Rocket Cam Live</h3>
+        <iframe id="video-frame" src="http://192.168.1.86:8080/video_feed" width="640" height="480" frameborder="0"></iframe>
+      {% else %}
+        <div class="video-placeholder"><p>[ VIDEO FEED OFF ]</p></div>
+      {% endif %}
+    </div>
+
+    {% if status.countdown %}
+      <div class="countdown">T-minus {{ status.countdown }}</div>
+    {% elif status.launched %}
+      <div class="countdown">🚀 LAUNCHED!</div>
+    {% elif status.aborted %}
+      <div class="countdown">❌ ABORTED</div>
+    {% endif %}
+
+    <div class="controls">
+      <form action="/start_recorder"><button class="nasa-button" {% if status.recording %}disabled{% endif %}>Start Recorder</button></form>
+      <form action="/stop_recorder"><button class="nasa-button" {% if not status.recording %}disabled{% endif %}>Stop Recorder</button></form>
+      <form action="/toggle_safety"><button class="nasa-button">Toggle Safety</button></form>
+      <form action="/launch"><button class="nasa-button" {% if not status.armed %}disabled{% endif %}>Launch</button></form>
+      <form action="/abort"><button class="nasa-button">Abort</button></form>
+      <form action="/start_camera"><button class="nasa-button">Start Camera</button></form>
+      <form action="/stop_camera"><button class="nasa-button">Stop Camera</button></form>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>Rocket Control Dashboard</p>
+  <p>© 2025 Ray's Rocket Team</p>
+</footer>
+<script>
+  function startCamera() {
+    fetch("http://192.168.1.86:5000/start_camera")
+      .then(response => {
+        if (!response.ok) throw new Error("Failed to start camera");
+        console.log("Camera started!");
+      })
+      .catch(error => console.error(error));
+  }
+</script>
+
+<script>
+function startCountdown(seconds) {
+  let count = seconds;
+  const countdownEl = document.getElementById("countdown-display");
+  const timer = setInterval(() => {
+    if (countdownEl) {
+      countdownEl.textContent = "T-minus " + count;
+    }
+    count--;
+    if (count < 0) {
+      clearInterval(timer);
+      if (countdownEl) {
+        countdownEl.textContent = "🚀 LAUNCHED!";
+      }
+    }
+  }, 1000);
+}
+</script>
+
 {% endblock %}

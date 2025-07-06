@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Engines & Thrust | Ray’s Space Station{% endblock %}
+{% block body_class %}landing{% endblock %}
+
+{% block content %}
+<div class="about-container">
+  <h1>🚀 Engine Explorer</h1>
+  <p>Select a model rocket engine below to see its thrust profile and specifications.</p>
+
+  <div class="engine-select">
+    <label for="engine-dropdown">Choose an engine:</label>
+    <select id="engine-dropdown" onchange="updateEngineInfo()">
+    {% for engine in engines %}
+        <option value="{{ loop.index0 }}">{{ engine.name }}</option>
+    {% endfor %}
+    </select>
+  </div>
+
+  <div class="engine-info" id="engine-info">
+    <!-- Filled by JavaScript -->
+  </div>
+
+  <a href="/hangar" class="back-link">← Back to The Hangar</a>
+</div>
+
+<script>
+  const engines = {{ engines | tojson }};
+  const infoBox = document.getElementById('engine-info');
+
+  function updateEngineInfo() {
+    const selectedIndex = document.getElementById('engine-dropdown').value;
+    const engine = engines[selectedIndex];
+
+    infoBox.innerHTML = `
+      <h2>${engine.name}</h2>
+      <ul>
+        <li><strong>Thrust:</strong> ${engine.thrust}</li>
+        <li><strong>Burn Time:</strong> ${engine.burn_time}</li>
+        <li><strong>Total Impulse:</strong> ${engine.impulse}</li>
+        <li><strong>Notes:</strong> ${engine.notes}</li>
+      </ul>
+    `;
+  }
+
+  // Initialize with first engine
+  updateEngineInfo();
+</script>
+{% endblock %}

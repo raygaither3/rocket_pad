@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About | Ray’s Space Station{% endblock %}
+{% block body_class %}about{% endblock %}
+
+{% block content %}
+  <div class="about-container">
+    <h1>🚀 Welcome to Ray’s Space Station</h1>
+    <p><strong>Ray’s Space Station</strong> is a Raspberry Pi-powered launch control platform that brings STEM learning to life with rockets, sensors, cameras, and real mission data. It’s not just a launcher — it’s a space education playground.</p>
+
+    <h2>🧠 What It Teaches</h2>
+    <ul>
+      <li>How rocket mass, engine size, and drag impact altitude</li>
+      <li>The effects of elevation and humidity on launches</li>
+      <li>How to estimate parachute sizes based on payload</li>
+      <li>Scientific thinking and hands-on experimentation</li>
+    </ul>
+
+    <h2>🛠️ Current Features</h2>
+    <ul>
+      <li>Live dashboard with countdown, safety toggle, and camera feed</li>
+      <li>Launch logging and event tracking to CSV</li>
+      <li>Manual and automatic abort systems</li>
+      <li>Onboard recorder for altitude and flight time</li>
+    </ul>
+
+    <h2>🚧 Coming Soon</h2>
+    <ul>
+      <li>Altitude predictor based on motor and weight</li>
+      <li>Graph viewer for launch history by engine type</li>
+      <li>Printable rocket designs and payload kits</li>
+      <li>Community mission sharing and comparison tools</li>
+    </ul>
+
+    <p>Check out the full source code on <a href="https://github.com/raygaither3/rocket_pad" target="_blank">GitHub</a>.</p>
+    <p><a href="/" class="back-link">← Back to Launch</a></p>
+  </div>
+{% endblock %}

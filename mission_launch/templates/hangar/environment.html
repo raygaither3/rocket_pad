@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Environment Variables | Ray’s Space Station{% endblock %}
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+  <h1>🌦️ Environment Variables</h1>
+  <p>Understand how humidity, altitude, and wind affect rocket performance. Planning for conditions ensures safer flights and better altitude predictions.</p>
+
+  <h2>Key Environmental Factors</h2>
+  <ul>
+    <li><strong>Humidity:</strong> Moist air is less dense, potentially improving altitude slightly but increasing motor ignition delays.</li>
+    <li><strong>Altitude:</strong> Higher launch sites have lower air pressure, reducing drag and boosting altitude potential.</li>
+    <li><strong>Wind:</strong> Strong winds can carry rockets off-course and require larger recovery areas.</li>
+    <li><strong>Temperature:</strong> Affects air density and engine performance.</li>
+  </ul>
+
+  <h2>Did You Know?</h2>
+  <p>
+    Launching at high altitudes can add significant meters to your rocket’s flight—but may also require tweaks to chute sizing due to lower air resistance.
+  </p>
+
+  <a href="/hangar" class="back-link">← Back to The Hangar</a>
+</div>
+{% endblock %}

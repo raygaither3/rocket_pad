@@ -1,11 +1,14 @@
 from flask import Flask
-from .gpio_controller import GPIOController
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-    app.config['GPIO'] = GPIOController(mock=True)
 
-    from . import routes
-    app.register_blueprint(routes.bp)
+    # No GPIOController here — we use Pi’s API instead
+
+    from .routes import bp
+    app.register_blueprint(bp)
 
     return app

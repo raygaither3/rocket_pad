@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Mission Planning | Ray’s Space Station{% endblock %}
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+  <h1>🧠 Mission Planning</h1>
+  <p>Before we launch, we plan. Understand the key factors behind every successful rocket mission.</p>
+
+  <h2>Key Planning Considerations:</h2>
+  <ul>
+    <li><strong>Rocket Weight:</strong> Total payload including the body, electronics, and recovery system.</li>
+    <li><strong>Engine Selection:</strong> Choose an engine powerful enough for your rocket's weight class.</li>
+    <li><strong>Launch Conditions:</strong> Weather, elevation, and humidity all impact altitude performance.</li>
+    <li><strong>Recovery System:</strong> Parachute sizing and deployment timing for a safe return.</li>
+  </ul>
+
+  <div class="mission-form">
+    <form method="POST" action="/hangar/mission-planning">
+        <label for="weight">Rocket Weight (grams):</label>
+        <input type="number" id="weight" name="weight" required min="1" />
+
+        <label for="engine">Select Engine Type:</label>
+        <select id="engine" name="engine">
+        <option value="A">A (Low Power)</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        </select>
+
+        <button type="submit">Estimate Altitude</button>
+    </form>
+
+    {% if altitude %}
+    <div id="altitudeModal" class="modal show">
+    <div class="modal-content">
+        <h2>Estimated Altitude</h2>
+        <p>{{ altitude }} ft</p>
+        <button onclick="closeModal()">Estimate Again</button>
+    </div>
+    </div>
+    {% endif %}
+    </div>
+
+  <a href="/hangar" class="back-link">← Back to The Hangar</a>
+</div>
+
+<script>
+  function closeModal() {
+    const modal = document.getElementById("altitudeModal");
+    modal.classList.remove("show");
+  }
+</script>
+
+{% endblock %}

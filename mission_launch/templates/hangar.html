@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}The Hangar - Ray’s Space Station{% endblock %}
+
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>🚀 Welcome to The Hangar</h1>
+    <p>This is where missions are built from the ground up. Explore the science, planning, and engineering behind rocketry through interactive sections.</p>
+
+    <div class="card-grid">
+        <a href="/hangar/mission-planning" class="hangar-card">
+            <h2>Mission Planning</h2>
+            <p>Estimate flight path, select objectives, and prepare your rocket mission.</p>
+        </a>
+        <a href="/hangar/engines" class="hangar-card">
+            <h2>Engines & Thrust</h2>
+            <p>Learn about motor classes, sizes, and how thrust impacts flight.</p>
+        </a>
+        <a href="/hangar/physics" class="hangar-card">
+            <h2>Rocket Physics</h2>
+            <p>Explore formulas for altitude, weight, drag, and lift-off force.</p>
+        </a>
+        <a href="/hangar/parachutes" class="hangar-card">
+            <h2>Parachute Systems</h2>
+            <p>Match chute size to rocket weight for safe landings every time.</p>
+        </a>
+        <a href="/hangar/environment" class="hangar-card">
+            <h2>Environment Variables</h2>
+            <p>Understand how humidity, altitude, and wind affect performance.</p>
+        </a>
+
+        <a href="/dashboard" class="hangar-card hangar-card--mission">
+            <h2>🛰️ Mission Control</h2>
+            <p>Launch rockets, watch live feeds, and record real missions in action.</p>
+            <span class="mission-btn">Enter Mission Control</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

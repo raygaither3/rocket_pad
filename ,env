@@ -1,0 +1,3 @@
+PI_IP=http://192.168.1.222:8080
+PI_API=http://192.168.1.86:8080
+PI_TEMP=http://192.168.1.86:5050/temperature

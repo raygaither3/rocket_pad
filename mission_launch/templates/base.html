@@ -5,6 +5,7 @@
   <title>{% block title %}Ray’s Space Station{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
@@ -15,8 +16,8 @@
       <div class="nav-links">
         <a href="/">Home</a>
         <a href="/dashboard">Mission Control</a>
-        <a href="#">Gallery</a>
-        <a href="#">About</a>
+        <a href="/hangar">Hangar</a>
+        <a href="/about">About</a>
       </div>
     </div>
   </nav>

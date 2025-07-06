@@ -1,0 +1,85 @@
+2025-06-16 14:38:17,Camera Started
+2025-06-16 14:49:09,Camera Started
+2025-06-16 14:58:38,Camera Started
+2025-06-16 15:05:32,Camera Started
+2025-06-16 15:20:02,Remote camera stopped
+2025-06-16 15:28:27,Camera Started
+2025-06-16 15:28:54,Camera Started
+2025-06-16 15:31:34,Camera Started
+2025-06-16 15:31:58,Camera Started
+2025-06-16 15:36:55,Camera Started
+2025-06-16 15:41:41,Remote camera stopped
+2025-06-16 15:41:44,Camera Started
+2025-06-16 15:44:53,Camera Started
+2025-06-16 15:45:00,Remote camera stopped
+2025-06-16 15:45:05,Camera Started
+2025-06-16 15:45:09,Remote camera stopped
+2025-06-17 00:48:51,Camera Started
+2025-06-17 00:49:37,Remote camera stopped
+2025-06-17 01:28:39,Safety Armed
+2025-06-17 01:28:46,Safety Disarmed
+2025-06-17 01:28:53,Camera Started
+2025-06-17 01:29:48,Camera Started
+2025-06-17 01:30:01,Remote camera stopped
+2025-06-17 01:32:02,Camera Started
+2025-06-17 01:33:29,Remote camera stopped
+2025-06-17 01:39:14,Camera Started
+2025-06-17 01:39:27,Remote camera stopped
+2025-06-17 01:46:07,Camera Started
+2025-06-17 01:46:21,Remote camera stopped
+2025-06-17 15:06:02,Camera Started
+2025-06-17 15:06:39,Remote camera stopped
+2025-06-17 15:24:40,Safety Armed
+2025-06-17 15:24:42,Safety Disarmed
+2025-06-17 15:24:43,Safety Armed
+2025-06-17 15:24:44,Safety Disarmed
+2025-06-17 15:24:51,Camera Started
+2025-06-17 15:25:22,Remote camera stopped
+2025-06-17 15:25:39,Camera Started
+2025-06-17 15:25:42,Remote camera stopped
+2025-06-17 15:29:24,Camera Started
+2025-06-17 15:33:20,Remote camera stopped
+2025-06-17 15:33:29,Camera Started
+2025-06-17 15:34:13,Remote camera stopped
+2025-06-17 16:21:54,Camera Started
+2025-06-17 16:22:09,Remote camera stopped
+2025-06-17 16:22:15,Camera Started
+2025-06-17 16:22:18,Remote camera stopped
+2025-06-17 19:20:11,Camera Started
+2025-06-17 19:20:40,Remote camera stopped
+2025-06-17 19:22:12,Safety Armed
+2025-06-17 19:38:09,Safety Armed
+2025-06-17 19:42:31,Safety Armed
+2025-06-17 22:48:39,Safety Armed
+2025-06-17 22:49:18,Safety Disarmed
+2025-06-17 22:49:20,Safety Armed
+2025-06-17 23:04:30,Safety Armed
+2025-06-17 23:04:33,Safety Disarmed
+2025-06-17 23:07:28,Safety Armed
+2025-06-17 23:13:34,Safety Armed
+2025-06-17 23:13:38,Safety Disarmed
+2025-06-17 23:13:41,Safety Armed
+2025-06-17 23:24:31,Safety Armed
+2025-06-17 23:24:54,Safety Disarmed
+2025-06-17 23:31:27,Safety Armed
+2025-06-17 23:35:54,Safety Disarmed
+2025-06-17 23:36:04,Safety Armed
+2025-06-17 23:36:31,"Camera start failed: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /start_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C5D00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:36:36,"Camera start failed: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /start_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C7020>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:36:58,"Camera start failed: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /start_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C7020>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:38:16,"Camera start failed: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /start_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C5D00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:38:19,"Failed to stop camera: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /stop_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C6BE0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:38:25,"Camera start failed: HTTPConnectionPool(host='192.168.1.86', port=5000): Max retries exceeded with url: /start_camera (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000173382C6F10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+2025-06-17 23:44:46,Safety Armed
+2025-06-17 23:44:54,Camera Started
+2025-06-17 23:48:40,Remote camera stopped
+2025-06-17 23:48:44,Camera Started
+2025-06-17 23:50:04,Remote camera stopped
+2025-06-17 23:50:08,Camera Started
+2025-06-17 23:52:16,Remote camera stopped
+2025-06-17 23:57:24,Launch Triggered
+2025-06-17 23:57:29,Remote Launch Triggered
+2025-06-18 12:15:06,Camera Started
+2025-06-18 12:15:38,Remote camera stopped
+2025-06-18 12:48:00,Camera Started
+2025-06-18 12:48:04,Remote camera stopped

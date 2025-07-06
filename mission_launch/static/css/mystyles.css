@@ -146,7 +146,8 @@ body.landing {
 /* Optional hover effect */
 .enter-button:hover {
   background-color: #45a049;
-} */
+} 
+
 .landing h1 {
   font-size: 3rem;
   margin: 1rem 0;
@@ -229,3 +230,282 @@ body.landing {
 .nav-links a:hover {
   color: #00ddb3;
 }
+
+
+
+.about-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  z-index: 10; 
+}
+.about-container p,
+.about-container ul,
+.about-container li {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.about-container h1 {
+  font-size: 2.5rem;
+  color: #ff5e5e;
+  margin-bottom: 20px;
+}
+
+.about-container h2 {
+  color: #5adbb5;
+  margin-top: 30px;
+  font-size: 1.6rem;
+}
+
+.about-container ul {
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.about-container ul li {
+  margin-bottom: 8px;
+}
+
+.about-container a {
+  color: #7bdff2;
+  text-decoration: none;
+}
+
+.about-container a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+
+
+body.about::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: stars 100s linear infinite;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+
+body.hangar {
+  overflow-y: auto;
+  background: #0b0c10; /* or whatever you want */
+  color: #66fcf1;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body.about {
+  overflow-x: hidden;
+  background: black;
+  color: #e0e0e0;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+}
+
+
+.mission-form {
+  background: #1a1a1a;
+  border: 2px solid #66fcf1;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 40px;
+  box-shadow: 0 0 15px #45a29e;
+  color: #66fcf1;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mission-form label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+.mission-form input,
+.mission-form select {
+  width: 100%;
+  padding: 8px;
+  background: #0b0c10;
+  border: 1px solid #45a29e;
+  color: #66fcf1;
+  border-radius: 6px;
+}
+
+.mission-form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mission-form button:hover {
+  background: #00ddb3;
+}
+
+.result {
+  margin-top: 30px;
+  background: #222831;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px dashed #66fcf1;
+  text-align: center;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  padding: 30px 40px;
+  border: 2px solid #66fcf1;
+  border-radius: 10px;
+  text-align: center;
+  color: #66fcf1;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 25px #00ffcc;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #00ffcc;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-content button:hover {
+  background-color: #00ddb3;
+}
+
+
+
+.engine-select {
+  position: relative;
+  z-index: 20;
+}
+
+/* Style the special Mission Control card */
+.hangar-card--mission {
+  background-color: #0b0b0b;
+  border: 2px solid #4caf50;
+  color: #00ffcc;
+  text-align: center;
+  padding: 50px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #00ffcc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 2;
+  max-width: 900px;
+  margin: 30px auto;
+  line-height: 1.6;
+}
+
+.hangar-card--mission h2 {
+  color: #00ffcc;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.hangar-card--mission p {
+  color: #00ffcc;
+  margin-bottom: 25px;
+  font-size: 1.2em;
+}
+
+.mission-btn {
+  display: inline-block;
+  background: #00ffcc;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.mission-btn:hover {
+  background: #4caf50;
+  color: #fff;
+}
+
+body,
+.hangar-card,
+.hangar-card--mission {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hangar-card--mission p {
+  color: #00ffcc;
+  margin-bottom: 20px;
+}
+
+.hangar-card {
+  padding: 30px;
+  line-height: 1.6;
+}
+
+.hangar-card h2 {
+  margin-bottom: 15px;
+}
+
+/* The "button" inside the card */
+.mission-btn {
+  display: inline-block;
+  background: #00ffcc;
+  color: #000; /* BLACK TEXT */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mission-btn:hover {
+  background: #4caf50;
+  color: #fff;
+}
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Parachute Systems | Ray’s Space Station{% endblock %}
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+  <h1>🪂 Parachute Systems</h1>
+  <p>Match chute size to rocket weight for safe landings every time. A properly sized recovery system ensures your rocket returns safely without damage.</p>
+
+  <h2>Why Chute Sizing Matters</h2>
+  <ul>
+    <li><strong>Descent Rate:</strong> Controls how quickly your rocket comes down.</li>
+    <li><strong>Rocket Weight:</strong> Heavier rockets need larger chutes.</li>
+    <li><strong>Wind Conditions:</strong> Affects drift distance during descent.</li>
+  </ul>
+
+  <h2>Basic Chute Sizing Formula</h2>
+  <p>
+    Chute diameter can be roughly estimated by:
+    <br>
+    \( D = \sqrt{\frac{(2 \times W)}{\rho \times C_d \times V^2}} \)
+  </p>
+  <p>
+    Where:<br>
+    \( D \) = Chute diameter (meters)<br>
+    \( W \) = Rocket weight (Newtons)<br>
+    \( \rho \) = Air density (kg/m³)<br>
+    \( C_d \) = Drag coefficient of chute<br>
+    \( V \) = Desired descent velocity (m/s)
+  </p>
+
+  <a href="/hangar" class="back-link">← Back to The Hangar</a>
+</div>
+{% endblock %}

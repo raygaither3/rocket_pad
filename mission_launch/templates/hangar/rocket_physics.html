@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Rocket Physics | Ray’s Space Station{% endblock %}
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+  <h1>⚙️ Rocket Physics</h1>
+  <p>Explore the physics that makes rocketry fly — from the forces at liftoff to your rocket’s soaring altitude.</p>
+
+  <h2>🚀 Key Rocket Physics Topics:</h2>
+  <ul>
+    <li><strong>Altitude Estimation:</strong> Calculate how high your rocket might fly based on thrust, weight, and drag.</li>
+    <li><strong>Weight (Mass):</strong> The total mass of your rocket affects acceleration and maximum height.</li>
+    <li><strong>Drag:</strong> Air resistance slows your rocket. Shape and surface finish matter.</li>
+    <li><strong>Lift-Off Force:</strong> The engine’s thrust must exceed your rocket’s weight to leave the pad.</li>
+  </ul>
+
+  <h2>Formulas & Explanations:</h2>
+
+  <div class="physics-section">
+    <h3>🌌 Lift-Off Thrust vs Weight</h3>
+    <p>
+      <strong>Force Required to Lift-Off:</strong><br>
+      \( F_{thrust} > m \times g \)
+    </p>
+    <p>
+      Where:<br>
+      \( F_{thrust} \) = Engine thrust (Newtons)<br>
+      \( m \) = Mass of rocket (kg)<br>
+      \( g \) = Acceleration due to gravity (9.81 m/s²)
+    </p>
+  </div>
+
+  <div class="physics-section">
+    <h3>🛫 Altitude Estimation (Simplified)</h3>
+    <p>
+      For a basic estimate ignoring drag:
+      <br>
+      \( h = \frac{(F_{thrust} - m \times g) \times t_{burn}}{2m} \)
+    </p>
+    <p>
+      Where:<br>
+      \( h \) = Height (meters)<br>
+      \( t_{burn} \) = Engine burn time (seconds)
+    </p>
+  </div>
+
+  <div class="physics-section">
+    <h3>🌬️ Drag Force</h3>
+    <p>
+      Drag slows your rocket’s ascent:
+      <br>
+      \( F_{drag} = \frac{1}{2} \times \rho \times v^2 \times C_d \times A \)
+    </p>
+    <p>
+      Where:<br>
+      \( \rho \) = Air density (kg/m³)<br>
+      \( v \) = Velocity (m/s)<br>
+      \( C_d \) = Drag coefficient<br>
+      \( A \) = Cross-sectional area (m²)
+    </p>
+  </div>
+
+  <div class="physics-section">
+    <h3>🪶 Rocket Weight</h3>
+    <p>
+      Total rocket mass includes:<br>
+      <ul>
+        <li>Body tube & fins</li>
+        <li>Engine weight</li>
+        <li>Electronics</li>
+        <li>Recovery system (e.g. parachute)</li>
+      </ul>
+      Knowing this mass helps choose the right engine.
+    </p>
+  </div>
+
+  <a href="/hangar" class="back-link">← Back to The Hangar</a>
+</div>
+{% endblock %}
