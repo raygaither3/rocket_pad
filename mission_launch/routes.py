@@ -1,27 +1,28 @@
 from flask import Blueprint, render_template, redirect, request, Response
 import requests
 import threading
-import atexit
-import platform
 import time
 import csv
 import os
+import platform
 from dotenv import load_dotenv
 
 from .flight_recorder import record_flight
 
-# -- Load .env file
+# Load environment
 load_dotenv()
 
-# -- Platform-safe GPIO import
-if platform.system() != "Windows":
+# Check if we're running in production
+IS_PRODUCTION = os.getenv("IS_PRODUCTION", "False") == "True"
+
+gpio = None
+if not IS_PRODUCTION and platform.system() != "Windows":
     from gpio_controller import GPIOController
     gpio = GPIOController()
-else:
-    gpio = None
 
 # -- Config
 bp = Blueprint("main", __name__)
+
 PI_IP = os.getenv("PI_IP", "http://192.168.1.86:8080")
 PI_API = os.getenv("PI_API", "http://192.168.1.86:8080")
 PI_TEMP = os.getenv("PI_TEMP", "http://192.168.1.86:5050/temperature")
@@ -208,4 +209,5 @@ def stop_recorder():
     return redirect("/dashboard")
 
 if gpio:
+    import atexit
     atexit.register(lambda: gpio.cleanup())
