@@ -6,14 +6,20 @@ import csv
 import os
 import platform
 from dotenv import load_dotenv
+from pathlib import Path
 
 from .flight_recorder import record_flight
 
-# Load environment
-load_dotenv()
+# Explicitly load .env from project root
+dotenv_path = Path(__file__).parent.parent / ".env"
+print("DOTENV PATH =", dotenv_path)
+print("EXISTS =", dotenv_path.exists())
+load_dotenv(dotenv_path)
 
-# Check if we're running in production
+print("DEBUG ENV CHECK:", os.getenv("IS_PRODUCTION"))
+
 IS_PRODUCTION = os.getenv("IS_PRODUCTION", "False") == "True"
+print("IS_PRODUCTION =", IS_PRODUCTION)
 
 gpio = None
 if not IS_PRODUCTION and platform.system() != "Windows":
@@ -72,25 +78,10 @@ def launch_sequence():
     except Exception as e:
         log_event(f"Remote Launch FAILED: {e}")
 
-# -- Routes
+# -- Routes safe everywhere
 @bp.route("/")
 def home():
     return render_template("landing.html")
-
-@bp.route("/dashboard")
-def index():
-    stream_url = f"{PI_IP}/video_feed"
-
-    try:
-        res = requests.get(PI_TEMP, timeout=2)
-        data = res.json()
-        temp_c = data.get("temp_c")
-        temp_f = data.get("temp_f")
-    except Exception as e:
-        print("Failed to fetch temp:", e)
-        temp_c = temp_f = None
-
-    return render_template("index.html", status=status, stream_url=stream_url, temp_c=temp_c, temp_f=temp_f)
 
 @bp.route("/about")
 def about():
@@ -131,82 +122,102 @@ def parachutes():
 def environment():
     return render_template("hangar/environment.html")
 
-@bp.route("/toggle_safety")
-def toggle_safety():
-    status["armed"] = not status["armed"]
-    log_event("Safety Armed" if status["armed"] else "Safety Disarmed")
+# -- Conditional routes for dashboard & hardware
+if IS_PRODUCTION:
+    @bp.route("/dashboard")
+    def index():
+        return render_template("coming_soon.html")
 
-    # Tell Pi to update RGB LED
-    try:
-        requests.post(f"{PI_IP}/status-led", json={
-            "armed": status["armed"],
-            "launched": status["launched"]
-        })
-    except Exception as e:
-        print("LED status update failed:", e)
+else:
+    @bp.route("/dashboard")
+    def index():
+        stream_url = f"{PI_IP}/video_feed"
 
-    return redirect("/dashboard")
+        try:
+            res = requests.get(PI_TEMP, timeout=2)
+            data = res.json()
+            temp_c = data.get("temp_c")
+            temp_f = data.get("temp_f")
+        except Exception as e:
+            print("Failed to fetch temp:", e)
+            temp_c = temp_f = None
 
-@bp.route("/launch")
-def launch():
-    if status["armed"] and not status["launched"]:
-        status["aborted"] = False
-        status["launched"] = True  # Update local status
-        log_event("Launch Triggered")
+        return render_template("index.html", status=status, stream_url=stream_url, temp_c=temp_c, temp_f=temp_f)
 
-        # Update LED to blue
+    @bp.route("/toggle_safety")
+    def toggle_safety():
+        status["armed"] = not status["armed"]
+        log_event("Safety Armed" if status["armed"] else "Safety Disarmed")
+
         try:
             requests.post(f"{PI_IP}/status-led", json={
-                "armed": False,
-                "launched": True
+                "armed": status["armed"],
+                "launched": status["launched"]
             })
         except Exception as e:
             print("LED status update failed:", e)
 
-        threading.Thread(target=launch_sequence).start()
-    return redirect("/dashboard")
+        return redirect("/dashboard")
 
-@bp.route("/abort")
-def abort():
-    status["aborted"] = True
-    status["countdown"] = None
-    log_event("Launch Aborted")
-    return redirect("/dashboard")
+    @bp.route("/launch")
+    def launch():
+        if status["armed"] and not status["launched"]:
+            status["aborted"] = False
+            status["launched"] = True
+            log_event("Launch Triggered")
 
-@bp.route("/start_camera")
-def start_camera_route():
-    try:
-        requests.get(f"{PI_API}/start_camera", timeout=5)
-        status["camera_on"] = True
-        log_event("Camera Started")
-    except Exception as e:
-        log_event(f"Camera start failed: {e}")
-    return redirect("/dashboard")
+            try:
+                requests.post(f"{PI_IP}/status-led", json={
+                    "armed": False,
+                    "launched": True
+                })
+            except Exception as e:
+                print("LED status update failed:", e)
 
-@bp.route("/stop_camera")
-def stop_camera_route():
-    try:
-        res = requests.get(f"{PI_API}/stop_camera", timeout=3)
-        if res.ok:
-            status["camera_on"] = False
-            log_event("Remote camera stopped")
-    except Exception as e:
-        log_event(f"Failed to stop camera: {e}")
-    return redirect("/dashboard")
+            threading.Thread(target=launch_sequence).start()
+        return redirect("/dashboard")
 
-@bp.route("/start_recorder")
-def start_recorder():
-    if not status["recording"]:
-        status["recording"] = True
-        log_event("Recorder Started")
-        threading.Thread(target=record_flight).start()
-    return redirect("/dashboard")
+    @bp.route("/abort")
+    def abort():
+        status["aborted"] = True
+        status["countdown"] = None
+        log_event("Launch Aborted")
+        return redirect("/dashboard")
 
-@bp.route("/stop_recorder")
-def stop_recorder():
-    status["recording"] = False
-    log_event("Recorder Stopped")
-    return redirect("/dashboard")
+    @bp.route("/start_camera")
+    def start_camera_route():
+        try:
+            requests.get(f"{PI_API}/start_camera", timeout=5)
+            status["camera_on"] = True
+            log_event("Camera Started")
+        except Exception as e:
+            log_event(f"Camera start failed: {e}")
+        return redirect("/dashboard")
+
+    @bp.route("/stop_camera")
+    def stop_camera_route():
+        try:
+            res = requests.get(f"{PI_API}/stop_camera", timeout=3)
+            if res.ok:
+                status["camera_on"] = False
+                log_event("Remote camera stopped")
+        except Exception as e:
+            log_event(f"Failed to stop camera: {e}")
+        return redirect("/dashboard")
+
+    @bp.route("/start_recorder")
+    def start_recorder():
+        if not status["recording"]:
+            status["recording"] = True
+            log_event("Recorder Started")
+            threading.Thread(target=record_flight).start()
+        return redirect("/dashboard")
+
+    @bp.route("/stop_recorder")
+    def stop_recorder():
+        status["recording"] = False
+        log_event("Recorder Stopped")
+        return redirect("/dashboard")
 
 if gpio:
     import atexit

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Mission Control - Coming Soon{% endblock %}
+
+{% block body_class %}hangar{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>🛰️ Mission Control - Coming Soon</h1>
+    <p>
+        Mission Control is temporarily offline while we prepare for launch.<br>
+        We’re moving the dashboard into production so you’ll soon be able to:
+    </p>
+    <ul>
+        <li>Monitor live rocket data</li>
+        <li>Launch missions from anywhere</li>
+        <li>Record flight logs and video</li>
+    </ul>
+    <p>
+        Thanks for your patience. Stay tuned… lift-off is coming soon!
+    </p>
+    
+    <a href="{{ url_for('main.hangar') }}" class="hangar-card hangar-card--mission" style="display: inline-block; text-decoration: none;">
+        <h2>🔙 Back to The Hangar</h2>
+        <p>Continue exploring rocket science and planning tools.</p>
+        <span class="mission-btn">Return to Hangar</span>
+    </a>
+</div>
+{% endblock %}
